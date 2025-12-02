@@ -96,14 +96,6 @@ const Templates = () => {
     },
   ];
 
-  const allTemplates = [...basicTemplates, ...premiumTemplates];
-
-  const getFilteredTemplates = () => {
-    if (activeTab === "basic") return basicTemplates;
-    if (activeTab === "premium") return premiumTemplates;
-    return allTemplates;
-  };
-
   return (
     <section id="templates" className="relative py-20 lg:py-32 overflow-hidden">
       {/* Background */}
@@ -194,7 +186,7 @@ const Templates = () => {
                     </div>
                   </div>
                   {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-50">
                     <button className="px-6 py-3 bg-white text-gray-900 rounded-xl font-semibold flex items-center gap-2 transform scale-0 group-hover:scale-100 transition-transform duration-300">
                       <Eye className="w-5 h-5" />
                       <span>Preview</span>
@@ -284,7 +276,7 @@ const Templates = () => {
                     <div className="text-lg opacity-90">Premium Design</div>
                   </div>
                   {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-50">
                     <button className="px-6 py-3 bg-white text-gray-900 rounded-xl font-semibold flex items-center gap-2 transform scale-0 group-hover:scale-100 transition-transform duration-300">
                       <Eye className="w-5 h-5" />
                       <span>Preview</span>

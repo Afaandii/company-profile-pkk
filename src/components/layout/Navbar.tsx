@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +28,7 @@ const Navbar = () => {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
             ? "bg-white/80 backdrop-blur-lg shadow-lg"
-            : "bg-gradient-to-r from-indigo-50/50 to-purple-50/50 backdrop-blur-sm"
+            : "bg-gradient-to-r from-indigo-900/20 via-purple-900/20 to-pink-900/20 backdrop-blur-sm"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,12 +36,12 @@ const Navbar = () => {
             {/* Logo */}
             <div className="flex items-center space-x-2 group cursor-pointer">
               <div className="relative">
-                <Sparkles className="w-8 h-8 text-indigo-600 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-indigo-600/20 blur-xl rounded-full animate-pulse"></div>
+                <img
+                  src="/images/sync-logo.png"
+                  alt="sync"
+                  className="rounded-lg w-36 h-12"
+                />
               </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                TemplateStore
-              </span>
             </div>
 
             {/* Desktop Menu */}
@@ -50,7 +50,11 @@ const Navbar = () => {
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
-                  className="relative px-5 py-2 text-gray-700 font-medium rounded-full transition-all duration-300 hover:text-indigo-600 group overflow-hidden"
+                  className={`relative px-5 py-2 font-medium rounded-full transition-all duration-300 group overflow-hidden ${
+                    scrolled
+                      ? "text-gray-700 hover:text-indigo-600"
+                      : "text-white hover:text-blue-500"
+                  }`}
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <span className="relative z-10">{item}</span>
