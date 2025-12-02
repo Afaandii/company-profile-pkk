@@ -8,11 +8,14 @@ const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
-            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              TemplateStore
-            </h3>
+            <img
+              src="/images/sync-logo.png"
+              alt="sync"
+              className="w-36 h-12 mb-8"
+            />
             <p className="text-gray-400">
-              Solusi template website profesional untuk bisnis Anda.
+              Solusi template website <br />
+              profesional untuk bisnis Anda.
             </p>
           </div>
 
@@ -84,7 +87,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>&copy; 2025 TemplateStore. All rights reserved.</p>
+          <p>&copy; 2025 SyncDev. All rights reserved.</p>
         </div>
       </div>
     </footer>
