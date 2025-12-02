@@ -103,7 +103,9 @@ const About = () => {
 
                 {/* Hover Arrow */}
                 <div className="flex items-center gap-2 mt-4 text-indigo-600 font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="text-sm">Learn more</span>
+                  <a href="/" className="text-sm cursor-pointer">
+                    Learn more
+                  </a>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
                 </div>
               </div>
