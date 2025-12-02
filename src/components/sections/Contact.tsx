@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Instagram, MessageCircle, MapPin, Send } from "lucide-react";
+import { Mail, Instagram, MessageCircle, Send } from "lucide-react";
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({

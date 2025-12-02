@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Check, ChevronRight } from "lucide-react";
+import { Check } from "lucide-react";
 import type { Template } from "../../types/index";
 
 interface TemplateCardProps {
