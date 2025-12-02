@@ -14,7 +14,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (section) => {
+  const scrollToSection = (section: string) => {
     const element = document.getElementById(section.toLowerCase());
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
