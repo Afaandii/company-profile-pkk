@@ -127,14 +127,6 @@ const Hero = () => {
           <div className="relative lg:scale-110">
             {/* Main Card */}
             <div className="relative">
-              {/* Floating Card 1 */}
-              <div className="absolute -top-8 -left-8 w-48 h-48 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl shadow-2xl transform rotate-6 hover:rotate-12 transition-transform duration-300 flex items-center justify-center z-10">
-                <div className="text-white text-center">
-                  <Sparkles className="w-12 h-12 mx-auto mb-2" />
-                  <div className="font-bold text-sm">Premium</div>
-                  <div className="text-xs">Quality</div>
-                </div>
-              </div>
 
               {/* Main Mockup */}
               <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border-8 border-gray-800">
@@ -149,15 +141,6 @@ const Hero = () => {
                   <div className="text-sm text-gray-200">
                     Professional & Responsive
                   </div>
-                </div>
-              </div>
-
-              {/* Floating Card 2 */}
-              <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-2xl transform -rotate-6 hover:-rotate-12 transition-transform duration-300 flex items-center justify-center z-10">
-                <div className="text-white text-center">
-                  <Zap className="w-12 h-12 mx-auto mb-2" />
-                  <div className="font-bold text-sm">Fast</div>
-                  <div className="text-xs">Loading</div>
                 </div>
               </div>
             </div>

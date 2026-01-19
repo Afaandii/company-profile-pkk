@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
   const menuItems = ["Home", "Templates", "Pricing", "Contact"];
 
   useEffect(() => {
@@ -15,11 +18,22 @@ const Navbar = () => {
   }, []);
 
   const scrollToSection = (section: string) => {
-    const element = document.getElementById(section.toLowerCase());
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false);
+    if (location.pathname !== "/") {
+      navigate("/");
+      // Wait for navigation and then scroll
+      setTimeout(() => {
+        const element = document.getElementById(section.toLowerCase());
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(section.toLowerCase());
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
+    setIsOpen(false);
   };
 
   return (
@@ -34,7 +48,7 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
-            <div className="flex items-center space-x-2 group cursor-pointer">
+            <Link to="/" className="flex items-center space-x-2 group cursor-pointer" onClick={() => window.scrollTo(0, 0)}>
               <div className="relative">
                 <img
                   src="/images/sync-logo.png"
@@ -42,7 +56,7 @@ const Navbar = () => {
                   className="rounded-lg w-36 h-12"
                 />
               </div>
-            </div>
+            </Link>
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-1">

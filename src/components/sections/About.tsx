@@ -162,7 +162,11 @@ const About = () => {
 
               {/* CTA Button */}
               <button className="mt-8 px-8 py-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-bold rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-2 group">
-                <span>Mulai Sekarang</span>
+                <button onClick={() =>
+                  document
+                    .getElementById("contact")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }>Mulai Sekarang</button>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
               </button>
             </div>

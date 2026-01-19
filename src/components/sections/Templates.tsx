@@ -376,7 +376,11 @@ const Templates = () => {
 
             {/* CTA Button */}
             <button className="px-10 py-4 bg-white text-indigo-900 font-bold text-lg rounded-xl hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-2xl flex items-center gap-3 mx-auto group">
-              <span>Pesan Custom</span>
+              <button onClick={() =>
+                document
+                  .getElementById("contact")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }>Pesan Custom</button>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
             </button>
           </div>
