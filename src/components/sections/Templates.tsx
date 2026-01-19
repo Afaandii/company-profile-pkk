@@ -317,6 +317,17 @@ const Templates = () => {
           </div>
         )}
 
+        {/* View All Templates Button */}
+        <div className="text-center mb-20">
+            <button 
+                onClick={() => window.location.href = '/templates'}
+                className="inline-flex items-center gap-3 px-8 py-4 bg-white text-indigo-900 border border-indigo-100 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
+            >
+                <span>Lihat Semua Template</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </button>
+        </div>
+
         {/* Custom Template CTA */}
         <div className="relative overflow-hidden rounded-3xl">
           {/* Background Image */}
