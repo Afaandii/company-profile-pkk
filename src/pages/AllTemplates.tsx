@@ -71,16 +71,6 @@ const AllTemplates = () => {
       {/* Header Section */}
       <section className="relative pt-32 pb-16 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 rounded-full mb-6"
-          >
-            <Sparkles className="w-4 h-4 text-indigo-600" />
-            <span className="text-sm font-semibold text-indigo-900">
-              Template Gallery
-            </span>
-          </motion.div>
 
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
@@ -103,12 +93,11 @@ const AllTemplates = () => {
             meningkatkan kredibilitas bisnis Anda.
           </motion.p>
 
-          {/* Search and Filters */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="flex flex-col md:flex-row gap-4 max-w-4xl mx-auto bg-white p-2 rounded-2xl shadow-xl border border-gray-100 mb-8"
+            className="flex flex-col md:flex-row gap-4 max-w-4xl mx-auto mb-12"
           >
             <div className="relative flex-grow group">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-indigo-600 transition-colors" />
@@ -117,24 +106,43 @@ const AllTemplates = () => {
                 placeholder="Cari nama template..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 bg-gray-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500/20 transition-all outline-none text-gray-700"
+                className="w-full pl-12 pr-4 py-4 bg-white border border-gray-100 shadow-lg shadow-indigo-500/5 rounded-2xl focus:ring-2 focus:ring-indigo-500/20 transition-all outline-none text-gray-700 hover:shadow-xl hover:shadow-indigo-500/10"
               />
             </div>
-            <div className="flex p-1 bg-gray-50 rounded-xl">
-              {categories.map((cat) => (
+          </motion.div>
+
+          {/* Category Filters */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="flex flex-wrap justify-center gap-3 mb-12"
+          >
+            {categories.map((cat) => {
+              const isActive = selectedCategory === cat;
+              return (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-6 py-3 rounded-lg font-bold transition-all duration-300 capitalize ${
-                    selectedCategory === cat
-                      ? "bg-white text-indigo-600 shadow-sm"
-                      : "text-gray-500 hover:text-gray-900"
+                  className={`relative px-8 py-3 rounded-full font-bold transition-all duration-300 capitalize overflow-hidden ${
+                    isActive
+                      ? "text-white shadow-lg shadow-indigo-500/25 scale-105 ring-2 ring-offset-2 ring-indigo-500"
+                      : "bg-white text-gray-500 hover:text-gray-900 hover:bg-gray-50 border border-gray-100 hover:border-gray-200"
                   }`}
                 >
-                  {cat === 'all' ? 'Semua' : cat}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeCategory"
+                      className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600"
+                    />
+                  )}
+                  <span className="relative z-10 flex items-center gap-2">
+                    {cat === 'all' && <Sparkles className="w-4 h-4" />}
+                    {cat === 'all' ? 'Semua Template' : `${cat} Template`}
+                  </span>
                 </button>
-              ))}
-            </div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
@@ -142,27 +150,55 @@ const AllTemplates = () => {
       {/* Templates Grid */}
       <section className="relative pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <AnimatePresence mode="popLayout">
+          <AnimatePresence mode="wait">
             {currentItems.length > 0 ? (
               <>
                 <motion.div 
-                  layout
-                  className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+                  key={`${selectedCategory}-${currentPage}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="min-h-[800px]" // Prevent layout shift during transition
                 >
-                  {currentItems.map((template, index) => {
-                    const gradient = getGradient(index, template.category);
-                    const isPremium = template.category === 'premium';
+                  <motion.div 
+                    className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+                    initial="hidden"
+                    animate="show"
+                    viewport={{ once: true }}
+                    variants={{
+                      hidden: { opacity: 0 },
+                      show: {
+                        opacity: 1,
+                        transition: {
+                          staggerChildren: 0.1
+                        }
+                      }
+                    }}
+                  >
+                    {currentItems.map((template, index) => {
+                      // Adjust index for gradient continuity across pages
+                      const globalIndex = (currentPage - 1) * itemsPerPage + index;
+                      const gradient = getGradient(globalIndex, template.category);
+                      const isPremium = template.category === 'premium';
 
-                    return (
-                      <motion.div
-                        key={template.id}
-                        layout
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.9 }}
-                        transition={{ duration: 0.4 }}
-                        className={`group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 ${isPremium ? 'border-2 border-amber-200' : ''}`}
-                      >
+                      return (
+                        <motion.div
+                          key={template.id}
+                          layout
+                          variants={{
+                            hidden: { opacity: 0, y: 20 },
+                            show: { 
+                              opacity: 1, 
+                              y: 0,
+                              transition: {
+                                duration: 0.5,
+                                ease: "easeOut"
+                              }
+                            }
+                          }}
+                          className={`group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 ${isPremium ? 'border-2 border-amber-200' : ''}`}
+                        >
                         {isPremium && (
                           <div className="absolute top-4 right-4 z-20 px-3 py-1 bg-gradient-to-r from-yellow-400 to-amber-500 text-white rounded-full text-xs font-bold shadow-lg flex items-center gap-1">
                             <Crown className="w-3 h-3" />
@@ -224,50 +260,67 @@ const AllTemplates = () => {
                             <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
                           </button>
                         </div>
-                      </motion.div>
-                    );
-                  })}
-                </motion.div>
+                        </motion.div>
+                      );
+                    })}
+                  </motion.div>
 
-                {/* Pagination UI */}
-                {totalPages > 1 && (
-                  <div className="mt-16 flex justify-center items-center gap-2">
-                    <button
-                      onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                      disabled={currentPage === 1}
-                      className="p-3 rounded-xl border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  {/* Pagination UI */}
+                  {totalPages > 1 && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 }}
+                      className="mt-16 flex justify-center items-center gap-2"
                     >
-                      <ChevronLeft className="w-5 h-5" />
-                    </button>
-                    
-                    {[...Array(totalPages)].map((_, i) => (
                       <button
-                        key={i}
-                        onClick={() => setCurrentPage(i + 1)}
-                        className={`w-12 h-12 rounded-xl font-bold transition-all ${
-                          currentPage === i + 1
-                            ? "bg-indigo-600 text-white shadow-lg"
-                            : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"
-                        }`}
+                        onClick={() => {
+                          setCurrentPage(prev => Math.max(prev - 1, 1));
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                        disabled={currentPage === 1}
+                        className="p-3 rounded-xl border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                       >
-                        {i + 1}
+                        <ChevronLeft className="w-5 h-5" />
                       </button>
-                    ))}
+                      
+                      {[...Array(totalPages)].map((_, i) => (
+                        <button
+                          key={i}
+                          onClick={() => {
+                            setCurrentPage(i + 1);
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }}
+                          className={`w-12 h-12 rounded-xl font-bold transition-all ${
+                            currentPage === i + 1
+                              ? "bg-indigo-600 text-white shadow-lg scale-110"
+                              : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"
+                          }`}
+                        >
+                          {i + 1}
+                        </button>
+                      ))}
 
-                    <button
-                      onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                      disabled={currentPage === totalPages}
-                      className="p-3 rounded-xl border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-                    >
-                      <ChevronRight className="w-5 h-5" />
-                    </button>
-                  </div>
-                )}
+                      <button
+                        onClick={() => {
+                          setCurrentPage(prev => Math.min(prev + 1, totalPages));
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                        disabled={currentPage === totalPages}
+                        className="p-3 rounded-xl border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+                    </motion.div>
+                  )}
+                </motion.div>
               </>
             ) : (
               <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                key="empty"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
                 className="text-center py-20 bg-gray-50 rounded-3xl border border-dashed border-gray-300"
               >
                 <Search className="w-12 h-12 text-gray-300 mx-auto mb-4" />
