@@ -76,9 +76,6 @@ const Navbar = () => {
                   <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-indigo-600 to-purple-600 group-hover:w-3/4 transition-all duration-300"></div>
                 </button>
               ))}
-              <button className="ml-4 px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 hover:scale-105">
-                Get Started
-              </button>
             </div>
 
             {/* Mobile Menu Button */}
