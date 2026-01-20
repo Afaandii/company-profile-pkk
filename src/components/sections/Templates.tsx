@@ -7,9 +7,11 @@ import {
   ArrowRight,
   Eye,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Templates = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("all");
 
   const basicTemplates = [
@@ -320,7 +322,7 @@ const Templates = () => {
         {/* View All Templates Button */}
         <div className="text-center mb-20">
             <button 
-                onClick={() => window.location.href = '/templates'}
+                onClick={() => navigate('/templates')}
                 className="inline-flex items-center gap-3 px-8 py-4 bg-white text-indigo-900 border border-indigo-100 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
             >
                 <span>Lihat Semua Template</span>
