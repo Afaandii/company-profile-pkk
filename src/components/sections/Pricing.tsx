@@ -16,6 +16,7 @@ const Pricing = () => {
         "Responsive design",
       ],
       icon: <Zap className="w-6 h-6" />,
+      link: "http://lynk.id/syncdev/2zvyjnp77myl",
     },
     {
       name: "Premium",
@@ -32,6 +33,7 @@ const Pricing = () => {
         "Fast loading",
       ],
       icon: <Crown className="w-6 h-6" />,
+      link: "https://lynk.id/syncdev/p/premium-pkg",
     },
     {
       name: "Custom",
@@ -47,6 +49,7 @@ const Pricing = () => {
         "Support prioritas",
       ],
       icon: <Sparkles className="w-6 h-6" />,
+      link: "https://wa.me/6288989432127?text=Halo%20saya%20mau%20konsultasi%20paket%20custom",
     },
   ];
 
@@ -194,7 +197,10 @@ const Pricing = () => {
                   </div>
 
                   {/* CTA Button */}
-                  <button
+                  <a
+                    href={plan.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`w-full py-4 rounded-xl font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 group/btn ${
                       plan.popular
                         ? "bg-white text-indigo-600 hover:bg-gray-50 shadow-lg"
@@ -203,7 +209,7 @@ const Pricing = () => {
                   >
                     <span>Pilih Paket</span>
                     <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
-                  </button>
+                  </a>
                 </div>
 
                 {/* Decorative Corner */}
