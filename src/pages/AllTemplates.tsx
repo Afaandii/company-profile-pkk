@@ -11,8 +11,10 @@ import {
 } from "lucide-react";
 import { templates } from "../data/templates";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const AllTemplates = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
@@ -220,7 +222,9 @@ const AllTemplates = () => {
                           
                           {/* Hover Overlay */}
                           <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-50">
-                            <button className="px-6 py-3 bg-white text-gray-900 rounded-xl font-semibold flex items-center gap-2 transform scale-0 group-hover:scale-100 transition-transform duration-300">
+                            <button 
+                              onClick={() => navigate(`/templates/${template.id}`)}
+                              className="px-6 py-3 bg-white text-gray-900 rounded-xl font-semibold flex items-center gap-2 transform scale-0 group-hover:scale-100 transition-transform duration-300">
                               <Eye className="w-5 h-5" />
                               <span>Preview</span>
                             </button>
@@ -255,7 +259,9 @@ const AllTemplates = () => {
                           </div>
 
                           {/* CTA Button */}
-                          <button className={`w-full py-3 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 group/btn bg-gradient-to-r ${isPremium ? 'from-purple-600 to-pink-600' : 'from-indigo-600 to-purple-600'}`}>
+                          <button 
+                            onClick={() => navigate(`/templates/${template.id}`)}
+                            className={`w-full py-3 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 group/btn bg-gradient-to-r ${isPremium ? 'from-purple-600 to-pink-600' : 'from-indigo-600 to-purple-600'}`}>
                             <span>Pilih Template</span>
                             <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
                           </button>
