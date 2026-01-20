@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
                 <h4 className="font-bold mb-4 hidden md:block">Follow Us</h4>
                 <div className="flex gap-4">
                 <a
-                    href="https://instagram.com/pkk.rpl.2"
+                    href="https://instagram.com/syncdev_"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 bg-gray-800 hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-500 rounded-full flex items-center justify-center transition-all duration-300 hover:-translate-y-1 group"
@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
                     <Instagram size={20} className="text-gray-400 group-hover:text-white transition-colors" />
                 </a>
                 <a
-                    href="https://wa.me/6281234567890"
+                    href="https://wa.me/6288989432127"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 bg-gray-800 hover:bg-green-500 rounded-full flex items-center justify-center transition-all duration-300 hover:-translate-y-1 group"
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
                     <MessageCircle size={20} className="text-gray-400 group-hover:text-white transition-colors" />
                 </a>
                 <a
-                    href="mailto:info@syncdev.com"
+                    href="mailto:syncdev870@gmail.com"
                     className="w-10 h-10 bg-gray-800 hover:bg-blue-500 rounded-full flex items-center justify-center transition-all duration-300 hover:-translate-y-1 group"
                 >
                     <Mail size={20} className="text-gray-400 group-hover:text-white transition-colors" />
