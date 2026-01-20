@@ -241,7 +241,13 @@ const Pricing = () => {
           <p className="text-gray-600 mb-4">
             Masih bingung memilih paket yang tepat?
           </p>
-          <button className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105">
+          <button 
+          onClick={() =>
+                  document
+                    .getElementById("contact")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                } 
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105">
             <span>Hubungi Kami</span>
             <ArrowRight className="w-5 h-5" />
           </button>
