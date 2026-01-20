@@ -9,11 +9,7 @@ const Contact: React.FC = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert("Terima kasih! Pesan Anda akan segera kami proses.");
-    setFormData({ name: "", email: "", message: "" });
-  };
+
 
   return (
     <section
@@ -85,9 +81,15 @@ const Contact: React.FC = () => {
           >
             {/* Contact Form Card */}
             <form
-              onSubmit={handleSubmit}
+              action="https://formsubmit.co/syncdev870@gmail.com"
+              method="POST"
               className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100"
             >
+              {/* FormSubmit Configuration */}
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_subject" value="New Contact Form Submission!" />
+              <input type="hidden" name="_template" value="table" />
+              
               <div className="mb-8">
                 <h3 className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">
                   Kirim Pesan
@@ -105,6 +107,7 @@ const Contact: React.FC = () => {
                   </label>
                   <input
                     type="text"
+                    name="name"
                     required
                     value={formData.name}
                     onChange={(e) =>
@@ -122,6 +125,7 @@ const Contact: React.FC = () => {
                   </label>
                   <input
                     type="email"
+                    name="email"
                     required
                     value={formData.email}
                     onChange={(e) =>
@@ -138,6 +142,7 @@ const Contact: React.FC = () => {
                     Pesan Anda
                   </label>
                   <textarea
+                    name="message"
                     required
                     value={formData.message}
                     onChange={(e) =>
@@ -179,7 +184,7 @@ const Contact: React.FC = () => {
             {/* WhatsApp Card */}
             <motion.a
               whileHover={{ y: -5 }}
-              href="https://wa.me/6281234567890"
+              href="https://wa.me/6288989432127"
               target="_blank"
               rel="noopener noreferrer"
               className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-green-500"
@@ -194,7 +199,7 @@ const Contact: React.FC = () => {
                   </h4>
                   <p className="text-sm text-gray-600 mb-2">Chat dengan kami</p>
                   <p className="text-green-600 font-semibold">
-                    +62 812-3456-7890
+                    +62 889-8943-2127
                   </p>
                 </div>
               </div>
@@ -203,7 +208,7 @@ const Contact: React.FC = () => {
             {/* Instagram Card */}
             <motion.a
               whileHover={{ y: -5 }}
-              href="https://instagram.com/templatestore"
+              href="https://instagram.com/syncdev_"
               target="_blank"
               rel="noopener noreferrer"
               className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-pink-500"
@@ -227,7 +232,7 @@ const Contact: React.FC = () => {
             {/* Email Card */}
             <motion.a
               whileHover={{ y: -5 }}
-              href="mailto:hello@templatestore.com"
+              href="mailto:syncdev870@gmail.com"
               className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-blue-500"
             >
               <div className="flex items-start gap-4">
